@@ -1,0 +1,249 @@
+/**
+ * Algorithms and data structure
+ *
+ * @author Pavel Petrikovskiy
+ * @version 14.05.17.
+ */
+
+#include <stdio.h>
+#include <math.h>
+
+void doSolution1();
+void doSolution2();
+void doSolution3();
+void doSolution4();
+void doSolution5();
+void doSolution6();
+int doMenu();
+
+int main(int argc, char const *argv[])
+{
+	int isOk = doMenu();
+
+	printf("\nExit status: %d\n", isOk);
+	return isOk;
+}
+
+	/* Menu */
+int doMenu() {
+
+	int number_of_task;
+
+	printf("\nЗадайте значение задачи:\n");
+	printf("\n\t1 - задача #1\n");
+	printf("\t2 - задача #2\n");
+	printf("\t3 - задача #3\n");
+	printf("\t4 - задача #4\n");
+	printf("\t5 - задача #5\n");
+	printf("\t6 - задача #6\n");
+	printf("\t0 - exit\n");
+	printf("\nВыбор: ");
+
+	scanf("%d", &number_of_task);
+
+	switch (number_of_task) {
+		case 1: 
+			doSolution1();
+			return 0;
+		case 2: 
+			doSolution2();
+			return 0;
+		case 3: 
+			doSolution3();
+			return 0;
+		case 4: 
+			doSolution4();
+			return 0;
+		case 5: 
+			doSolution5();
+			return 0;
+		case 6: 
+			doSolution6();
+			return 0;
+		case 0: 
+			printf("Goodbye!\n");
+			return 0;
+		default: {
+			//Как нибудь обрабатываем исключение тут
+			//или в main()
+			return -1;
+		}
+	}
+}
+
+
+	/*	Task 1
+	*	Ввести a и b и вывести квадраты 
+	*	и кубы чисел от a до b. 
+	*/
+void doSolution1() {
+
+	int a, b;
+
+	printf("\n1. Ввести a и b и вывести квадраты и кубы чисел от a до b.\n\n");
+
+	start:
+	printf("Введите разные значения a и b.\n");
+	printf("Введите a: ");
+	scanf("%d", &a);
+
+	printf("Введите b: ");
+	scanf("%d", &b);
+
+	if (a < b) {
+		printf("Квадраты и кубы всех чисел между a и b:\n");
+		printf("|Число:\t| Квадрат\t| Куб\t|\n");
+		while (a != b + 1) {
+			int num2 = a;
+			int num3 = a;
+			num2 = pow(num2,2);
+			num3 = pow(num3,3);
+			printf("| %d\t| %d\t\t| %d\t|\n", a, num2, num3);
+			a++;
+		}
+	} else if (a > b) {
+		printf("Квадраты и кубы всех чисел между a и b:\n");
+		printf("|Число:\t| Квадрат\t| Куб\t|\n");
+			while (a + 1 != b) {
+			int num2 = b;
+			int num3 = b;
+			num2 = pow(num2,2);
+			num3 = pow(num3,3);
+			printf("| %d\t| %d\t\t| %d\t|\n", b, num2, num3);
+			b++;
+		}
+	} else goto start;
+}
+
+	/*	Task 2
+	*	Даны целые положительные числа N и K. Используя только
+	* 	операции сложения и вычитания, найти частное от деления 
+	* 	нацело N на K, а также остаток от этого деления.
+	*/
+void doSolution2() {
+
+	int n, k;
+
+	printf("\n\t2. Даны целые положительные числа N и K. Используя только\n");
+	printf("операции сложения и вычитания, найти частное от деления нацело\n");
+	printf("N на K, а также остаток от этого деления.\n\n");
+
+	start:
+	printf("Введите разные положительные значения N и K.\n");
+	printf("Введите N: ");
+	scanf("%d", &n);
+
+	printf("Введите K: ");
+	scanf("%d", &k);
+
+	if (n > k && n > 0 && k > 0) {
+		printf("Деление N на K:\n");
+		int count = 0;
+		while (n >= k) {
+			if (n < 0) {
+				n += k;
+				break;
+			}
+			n -= k;
+			count++;
+		}
+		printf("Частное: %d\nОстаток: %d\n", count, n);
+	} else if (n < k && n > 0 && k > 0) {
+		printf("\n\tДеление нацело невозможно, N меньше K,\n");
+		printf("результат - десятичная дробь.\n");
+	} 
+	else goto start;
+}
+
+	/* 	Task 3
+	*	Дано целое число N (> 0). С помощью операций деления нацело 
+	*	и взятия остатка от деления определить, имеются ли в записи 
+	*	числа N нечетные цифры. Если имеются, то вывести True, если 
+	*	нет — вывести False. 
+	*/
+void doSolution3() {
+
+	int n;
+	bool answer = false;
+	int ostatok(int a, int b);
+
+	printf("\n\t3. Дано целое число N (> 0). С помощью операций деления нацело\n");
+	printf("и взятия остатка от деления определить, имеются ли в записи\n");
+	printf("числа N нечетные цифры. Если имеются, то вывести True, если\n");
+	printf("нет — вывести False.\n\n");
+
+	start:
+	printf("Введите положительное значение N.\n");
+	printf("Введите N: ");
+	scanf("%d", &n);
+
+	if (n >= 1) {
+		while (n >= 1) {
+			int a = ostatok(n, 2);
+			if (a != 0) {answer = true;}
+			n = n / 10;
+		}
+			printf(answer ? "true" : "false");
+	}
+	else goto start;
+}
+
+	/* Task 4 */
+void doSolution4() {
+
+}
+
+	/* Task 5 */
+void doSolution5() {
+
+}
+
+	/* Task 6 */
+void doSolution6() {
+
+}
+
+int ostatok(int a, int b) {
+		
+	int count = 0;
+		
+	while (a >= b) {
+		if (a < 0) {
+			a += b;
+			break;
+		}
+		a -= b;
+		count++;
+	}
+	return a;
+}
+
+int chastnoe(int a, int b) {
+
+	int count = 0;
+		
+	while (a >= b) {
+		if (a < 0) {
+			a += b;
+			break;
+		}
+		a -= b;
+		count++;
+	}
+	return count;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
