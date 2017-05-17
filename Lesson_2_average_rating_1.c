@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	counter = 1;
 	
 	while (counter <= 10) {
-		printf("%s", "Enter grade:");
+		printf("Enter grade: ");
 		scanf("%d", &grade);
 		sum = sum + grade;
 		counter++;
