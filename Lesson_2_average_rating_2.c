@@ -11,21 +11,21 @@ int main(int argc, char *argv[]) {
 	// Фаза инициализации
 	sum = 0;
 	counter = 0;
-	printf("%s", "Enter grade(-1-end):");
+	printf("%s", "Enter grade(-1 -> end): ");
 	scanf("%d", &grade);
 	
 	while (grade != -1) {
 		sum = sum + grade;
 		counter++;
-		printf("%s", "Enter grade(-1-end):");
+		printf("%s", "Enter grade(-1 -> end): ");
 		scanf("%d", &grade);
 	}
 	
 	if (counter != 0) {
 		average=(double)sum/counter;
-		printf("Class average is %g\n",average);
+		printf("Class average is %g\n", average);
 	} else {
-		puts("No grades were entered");
+		puts("No grades were entered\n");
 	}
 	
 	return 0;
