@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
 
 	while(a != b)
 	if (a > b) {
-		a = a - b;
+		a -= b;
 	} else {
-		b = b - a;
+		b -= a;
 	}
 	
 	printf("GCD: %i\n", a);
