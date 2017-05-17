@@ -123,6 +123,8 @@ void doSolution1() {
 void doSolution2() {
 
 	int n, k;
+	int ostatok(int a, int b); 		// Реализация в конце файла
+	int chastnoe(int a, int b);		// <-----------------------
 
 	printf("\n\t2. Даны целые положительные числа N и K. Используя только\n");
 	printf("операции сложения и вычитания, найти частное от деления нацело\n");
@@ -138,16 +140,9 @@ void doSolution2() {
 
 	if (n > k && n > 0 && k > 0) {
 		printf("Деление N на K:\n");
-		int count = 0;
-		while (n >= k) {
-			if (n < 0) {
-				n += k;
-				break;
-			}
-			n -= k;
-			count++;
-		}
-		printf("Частное: %d\nОстаток: %d\n", count, n);
+		int ost = ostatok(n, k);
+		int chast = chastnoe(n, k);
+		printf("Частное: %d\nОстаток: %d\n", chast, ost);
 	} else if (n < k && n > 0 && k > 0) {
 		printf("\n\tДеление нацело невозможно, N меньше K,\n");
 		printf("результат - десятичная дробь.\n");
@@ -203,9 +198,11 @@ void doSolution6() {
 
 }
 
+/*
+*	Реализация алгоритмов деления и взятия остатка
+*/
+
 int ostatok(int a, int b) {
-		
-	int count = 0;
 		
 	while (a >= b) {
 		if (a < 0) {
@@ -213,7 +210,6 @@ int ostatok(int a, int b) {
 			break;
 		}
 		a -= b;
-		count++;
 	}
 	return a;
 }
