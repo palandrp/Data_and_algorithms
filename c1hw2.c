@@ -215,22 +215,9 @@ void doSolution4() {
 	*/
 void doSolution5() {
 
-	float max, input;
+	void showMax(int range);
 
-	printf("\n\t5. Написать функцию нахождения максимального из трех чисел.\n\n");
-
-	printf("Введите числа:\n");
-	scanf("%f", &input);
-		
-	max = input;
-	for (int i = 0; i < 2; ++i)
-	{
-		scanf("%f", &input);
-		if (max < input) max = input;
-
-	}
-
-	printf("Максимальное: %f\n", max);
+	showMax(3);
 
 }
 
@@ -274,6 +261,26 @@ int chastnoe(int a, int b) {
 	return count;
 }
 
+
+void showMax(int range) {
+
+	float max, input;
+
+	printf("\n\t5. Написать функцию нахождения максимального из трех чисел.\n\n");
+
+	printf("Введите числа:\n");
+	scanf("%f", &input);
+		
+	max = input;
+	for (int i = 0; i < range - 1; ++i)
+	{
+		scanf("%f", &input);
+		if (max < input) max = input;
+
+	}
+
+	printf("Максимальное: %f.2\n", max);
+}
 
 
 
