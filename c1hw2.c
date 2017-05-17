@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
 void doSolution1();
 void doSolution2();
@@ -215,9 +217,11 @@ void doSolution4() {
 	*/
 void doSolution5() {
 
-	void showMax(int range);
+	void showMax(int range);	// Реализация в конце файла
 
-	showMax(3);
+	printf("\n\t5. Написать функцию нахождения максимального из трех чисел.\n\n");
+
+	showMax(3);		// Сейчас из 3-х чисел, но можно и больше
 
 }
 
@@ -228,12 +232,26 @@ void doSolution5() {
 	*/
 void doSolution6() {
 
+	int random;
+
+	printf("\n\t6. Написать функцию, генерирующую случайное число от 1 до 100.\n");
+	printf("а) с использованием стандартной функции rand()\n");
+	printf("б) без использования стандартной функции rand()\n\n");
+
+	srand(time(NULL));
+	random = rand() % 100 + 1;
+
+	printf("Сгенерировали число методом а: %d\n", random);
+
+	random = (2 * 1 + 3) % 100;
+
+	printf("Сгенерировали число методом б: %d\n", random);
+
 }
 
-/*
-*	Реализация алгоритмов деления и взятия остатка
-*/
-
+	/*
+	*	Реализация алгоритмов деления и взятия остатка
+	*/
 int ostatok(int a, int b) {
 		
 	while (a >= b) {
@@ -261,12 +279,12 @@ int chastnoe(int a, int b) {
 	return count;
 }
 
-
+	/*
+	*	Реализация алгоритма нахождения максимального числа
+	*/
 void showMax(int range) {
 
 	float max, input;
-
-	printf("\n\t5. Написать функцию нахождения максимального из трех чисел.\n\n");
 
 	printf("Введите числа:\n");
 	scanf("%f", &input);
@@ -279,7 +297,7 @@ void showMax(int range) {
 
 	}
 
-	printf("Максимальное: %f.2\n", max);
+	printf("Максимальное: %f\n", max);
 }
 
 
