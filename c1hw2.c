@@ -232,7 +232,14 @@ void doSolution5() {
 	*/
 void doSolution6() {
 
-	int random;
+	int random,i,m,b,a,Xn;
+	void genRandom(int m, int b, int a, int Xn, int i);
+	void analiseTheAlgoritmRandom(int m, int b, int a, int Xn);
+
+	m = 101;
+	b = 1;
+	a = 2;
+	Xn = 0;		// Xn = (a * Xn + b) % m;
 
 	printf("\n\t6. Написать функцию, генерирующую случайное число от 1 до 100.\n");
 	printf("а) с использованием стандартной функции rand()\n");
@@ -243,10 +250,12 @@ void doSolution6() {
 
 	printf("Сгенерировали число методом а: %d\n", random);
 
-	random = (2 * 1 + 3) % 100;
+	printf("Сгенирировать числа методом б:\n");
+	printf("Сколько чисел сгенерировать? Кол-во: ");
+	scanf("%d", &i);
 
-	printf("Сгенерировали число методом б: %d\n", random);
-
+	genRandom(m, b, a, Xn, i);
+	// analiseTheAlgoritmRandom(m, b, a, Xn);
 }
 
 	/*
@@ -300,9 +309,39 @@ void showMax(int range) {
 	printf("Максимальное: %f\n", max);
 }
 
+	/*
+	*	Функция генерации псевдоарандомного набора чисел
+	*/
+void genRandom(int m, int b, int a, int Xn, int iter) {
 
+	for (int i = 0; i < iter; i++) {
+		Xn = (a * Xn + b) % m;
+		if (Xn == 0) Xn = 100;
+		printf("%d\t", Xn);
+	}
+}
 
+	/*
+	*	Функция для анализа созданного алгоритма рандомного числа
+	*/
+void analiseTheAlgoritmRandom(int m, int b, int a, int Xn) {
 
+	int Aa;
+	int max = 0;
+
+	printf("Итерация\t| Коэффициент a\t\t| Случайное Х\t\t| Максимальное Х\t|\n");
+
+	for (int i = 0; i < 1000; i++) {
+		Aa = a * Xn + b;
+		Xn = (a * Xn + b) % m;
+		if (Xn > max) {
+			max = Xn;
+			printf("%d\t\t| %d\t\t\t| %d\t\t\t| %d\t\t\t|\n", i, Aa, Xn, max);
+		}
+		if (Xn == 100)
+			printf("%d\t\t| %d\t\t\t| %d\t\t\t| \t\t\t\t|\n", i, Aa, Xn);
+	}
+}
 
 
 
