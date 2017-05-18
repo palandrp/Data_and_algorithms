@@ -232,14 +232,10 @@ void doSolution5() {
 	*/
 void doSolution6() {
 
-	int random,i,m,b,a,Xn;
-	void genRandom(int m, int b, int a, int Xn, int i);
-	void analiseTheAlgoritmRandom(int m, int b, int a, int Xn);
-
-	m = 101;
-	b = 1;
-	a = 2;
-	Xn = 0;		// Xn = (a * Xn + b) % m;
+	int random,i,m,b,a,Xn,chois;
+	void genPseudoRandom();
+	void analiseTheAlgoritmRandom();
+	void genRealRandom();
 
 	printf("\n\t6. Написать функцию, генерирующую случайное число от 1 до 100.\n");
 	printf("а) с использованием стандартной функции rand()\n");
@@ -251,11 +247,26 @@ void doSolution6() {
 	printf("Сгенерировали число методом а: %d\n", random);
 
 	printf("Сгенирировать числа методом б:\n");
-	printf("Сколько чисел сгенерировать? Кол-во: ");
-	scanf("%d", &i);
+	printf("Реально псевдорандомное число (1)\n");
+	printf("Набор псевдослучайных чисел   (2)\n");
+	printf("Анализ алгоритма №2           (3)\n");
+	next:
+	printf("Выбор: ");
+	scanf("%d", &chois);
 
-	genRandom(m, b, a, Xn, i);
-	// analiseTheAlgoritmRandom(m, b, a, Xn);
+	switch (chois) {
+		case 1:
+			genRealRandom();
+			break;
+		case 2:
+			genPseudoRandom();
+			break;
+		case 3:
+			analiseTheAlgoritmRandom();
+			break;
+		default:
+			goto next;
+	}
 }
 
 	/*
@@ -299,8 +310,7 @@ void showMax(int range) {
 	scanf("%f", &input);
 		
 	max = input;
-	for (int i = 0; i < range - 1; ++i)
-	{
+	for (int i = 0; i < range - 1; ++i) {
 		scanf("%f", &input);
 		if (max < input) max = input;
 
@@ -310,9 +320,61 @@ void showMax(int range) {
 }
 
 	/*
+	*	Функция генерации рандомного числа с помощью пользователя
+	*/
+void genRealRandom() {
+
+	int random;
+	int m = 101;
+	int b = 1;
+	int a = 2;
+
+	unsigned long int ttime;
+	ttime = time (NULL);
+
+	/* ============================================
+	*  Переворачиваем пепеменную ttime задом наперед
+	*  берем остатоки от деления, формируем новое число
+	*  с меняющейся верхней частью (а не нижней, как у ttime)
+	*/
+	int ptime;
+	int count = 0;
+	int array[50];
+	unsigned int Xn = 0;
+
+	while (ttime > 0) {
+		ptime = ttime % 10;
+		ttime = ttime / 10;
+		array[count] = ptime;
+		// printf("%d", array[count]);  // отладочное сообщение
+		count++;
+	}
+
+	Xn = array[0];
+	for (int i = 1; i < 2; i++) {	// берем только две первые цифры,
+		Xn = Xn *10 + array[i];		// которые меняются быстрее всего
+	}
+	// printf("\n%d\n", Xn);  // отладочное сообщение
+	//==============================================
+
+	random = (a * Xn + b) % m;
+
+	printf("%d\n", random);
+}
+
+	/*
 	*	Функция генерации псевдоарандомного набора чисел
 	*/
-void genRandom(int m, int b, int a, int Xn, int iter) {
+void genPseudoRandom() {
+
+	int m = 101;
+	int b = 1;
+	int a = 2;
+	int Xn = 0;
+	int iter;
+
+	printf("Сколько чисел сгенерировать? Кол-во: ");
+	scanf("%d", &iter);
 
 	for (int i = 0; i < iter; i++) {
 		Xn = (a * Xn + b) % m;
@@ -324,22 +386,31 @@ void genRandom(int m, int b, int a, int Xn, int iter) {
 	/*
 	*	Функция для анализа созданного алгоритма рандомного числа
 	*/
-void analiseTheAlgoritmRandom(int m, int b, int a, int Xn) {
+void analiseTheAlgoritmRandom() {
 
+	int m = 101;
+	int b = 1;
+	int a = 2;
+	int Xn = 0;
 	int Aa;
 	int max = 0;
+	int min = 1000;
 
-	printf("Итерация\t| Коэффициент a\t\t| Случайное Х\t\t| Максимальное Х\t|\n");
+	printf("\n\nИтерация\t| Коэффициент a\t\t| Случайное Х\t\t| Максимальное Х\t| Минимальное Х\t|\n");
 
 	for (int i = 0; i < 1000; i++) {
 		Aa = a * Xn + b;
 		Xn = (a * Xn + b) % m;
 		if (Xn > max) {
 			max = Xn;
-			printf("%d\t\t| %d\t\t\t| %d\t\t\t| %d\t\t\t|\n", i, Aa, Xn, max);
+			printf("%d\t\t| %d\t\t\t| %d\t\t\t| %d\t\t\t| \t\t|\n", i, Aa, Xn, max);
 		}
 		if (Xn == 100)
-			printf("%d\t\t| %d\t\t\t| %d\t\t\t| \t\t\t\t|\n", i, Aa, Xn);
+			printf("%d\t\t| %d\t\t\t| %d\t\t\t| \t\t\t\t| \t\t|\n", i, Aa, Xn);
+		if (Xn < min) {
+			min = Xn;
+			printf("%d\t\t| %d\t\t\t| %d\t\t\t| \t\t\t| %d\t\t|\n", i, Aa, Xn, min);
+		}
 	}
 }
 
