@@ -32,12 +32,12 @@ int doMenu() {
 	int number_of_task;
 
 	printf("\nЗадайте значение задачи:\n");
-	printf("\n\t1 - задача #1\n");
-	printf("\t2 - задача #2\n");
-	printf("\t3 - задача #3\n");
-	printf("\t4 - задача #4\n");
-	printf("\t5 - задача #5\n");
-	printf("\t6 - задача #6\n");
+	printf("\n\t1 - задача #1 (квадраты и кубы)\n");
+	printf("\t2 - задача #2 (остаток от деления)\n");
+	printf("\t3 - задача #3 (найти нечетные)\n");
+	printf("\t4 - задача #4 (среднее арифметическое)\n");
+	printf("\t5 - задача #5 (найти большее)\n");
+	printf("\t6 - задача #6 (сделать рандом)\n");
 	printf("\t0 - exit\n");
 	printf("\nВыбор: ");
 
@@ -193,7 +193,7 @@ void doSolution3() {
 void doSolution4() {
 
 	float sum = 0;
-	int count = -1;
+	int count = 0;
 	int number;
 
 	printf("\n\t4. С клавиатуры вводятся числа, пока не будет введен 0.\n");
@@ -203,8 +203,10 @@ void doSolution4() {
 	printf("Начинайте вводить числа:\n");
 	do {
 		scanf("%d", &number);
-		sum += number;
-		count++;
+		if ((number + 10) % 10 == 8) {
+			sum += number;
+			count++;
+		}
 	} while (number != 0);
 
 	float average_rating = sum / count;
