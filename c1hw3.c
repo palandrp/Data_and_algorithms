@@ -1,7 +1,13 @@
+/**
+ * Algorithms and data structure
+ *
+ * @author Pavel Petrikovskiy
+ * @version 22.05.17.
+ */
 #include <stdio.h>
 #include <time.h>
 
-#define Define int
+#define D int
 
 struct SFraction {
 	int whole,
@@ -23,7 +29,7 @@ SFraction divFrac(SFraction *frac1, SFraction *frac2);
 SFraction mulFrac(SFraction *frac1, SFraction *frac2);
 SFraction toSimplifyF(SFraction *frac);
 SFraction getWhole(SFraction *frac);
-void Swap(Define *a,Define *b);
+void toSwap(D *a, D *b, D *c);
 int doMenu();
 void doSolution1();
 void doSolution2();
@@ -232,6 +238,21 @@ void doSolution5() {
 
 void doSolution6() {
 
+	int a, b, c;
+
+	printf("Введите три переменные: \n");
+	printf("введите а: \n");
+	scanf("%d", &a);
+	printf("введите b: \n");
+	scanf("%d", &b);
+	printf("введите c: \n");
+	scanf("%d", &c);
+	printf("Ваши переменные а:%d, b:%d, c:%d\n", a, b, c);
+
+	toSwap(&a, &b, &c);
+
+	printf("Переменные после обмена а:%d, b:%d, c:%d\n", a, b, c);
+
 	pause();
 	doMenu();
 }
@@ -373,9 +394,13 @@ SFraction getWhole(SFraction *frac) {
 	return *frac;
 }
 
-void Swap(Define *a,Define *b) {
+void toSwap(D *a, D *b, D *c) {
+	int buf1 = *a;
+	int buf2 = *b;
 
-
+	*a = *c; 
+	*b = buf1; 
+	*c = buf2;
 }
 
 void pause() {
