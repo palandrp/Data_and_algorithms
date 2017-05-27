@@ -133,14 +133,62 @@ int findMax(int array[], int M){
 	return max;
 }
 
+/**
+ * g. Читаем массив из файла.
+ */
+int printFile(char file_name[]){
+	FILE *file;
+	file = fopen(file_name,"r");
+
+	if (file != NULL){
+		int M;
+		fscanf(file, "%d", &M);
+		int array[M];
+		for (int i = 0; i < M; ++i){
+			fscanf(file, "%d", &array[i]);		
+		}
+		printArray(array, M);
+		printf("\n");
+		return 0;
+	} else {
+		printf("Файл не найден!\n");
+		return 1;
+	}
+}
+
+/**
+ * h. Находим ДВА номера элементов, которые максимально отличаются 
+ * от среднего арифметического массива. (Что значит "найти ВСЕ" я не понимаю)
+ * Модифицируем уже написанную функцию, так чтобы она находила первый элемент, а затем
+ * искала второй элемент игнорируя попадания на найденный первые элемент.
+ */
+void findFirstPro(int array[], int M){
+	int diff1, diff2, max = 0;
+	int av_sum = averageSumm(array, M);
+	for (int i = 0; i < M; i++){
+		if (max < av_sum - array[i]){
+			max = av_sum - array[i];
+			diff1 = i; 
+		}
+	}
+	max = 0;
+	for (int i = 0; i < M; i++){
+		if (max < av_sum - array[i] && i != diff1){
+			max = av_sum - array[i];
+			diff2 = i; 
+		}
+	}
+	printf("[%d] и [%d]\n", diff1, diff2);
+}
+
 int main(int argc, char const *argv[]) {
 
-	printf("\nВведите цифры массива int, нажимая Enter.\n");
-	printf("Всего 10 цифр:\n");
-	int array0[MaxN];
-	toArray(array0, MaxN);
-	printf("Выводим полученный массив:\n");
-	printArray(array0, MaxN);
+	// printf("\nВведите цифры массива int, нажимая Enter.\n");
+	// printf("Всего 10 цифр:\n");
+	// int array0[MaxN];
+	// toArray(array0, MaxN);
+	// printf("Выводим полученный массив:\n");
+	// printArray(array0, MaxN);
 
 	printf("\n\nВторое задание. Генерируется массив случайных чисел:\n");
 	int array1[MaxN];
@@ -148,17 +196,28 @@ int main(int argc, char const *argv[]) {
 	printf("Теперь этот массив выводится:\n");
 	printArray(array1, MaxN);
 
-	printf("\n\nПодсчитываем сумму элементов массива:\n");
-	printf("%d\n", findSumm(array1, MaxN));
+	// printf("\n\nПодсчитываем сумму элементов массива:\n");
+	// printf("%d\n", findSumm(array1, MaxN));
 
-	printf("\nНаходим среднюю сумму элементов массива из второго задания:\n");
+	printf("\nНаходим среднеарифметическую сумму элементов\n");
+	printf("массива из второго задания:\n");
 	printf("%d\n", averageSumm(array1, MaxN));
 
-	printf("\nНаходим номер максимально отличного от неё элемента:\n");
-	printf("[%d]\n", findFirst(array1, MaxN));
+	// printf("\nНаходим номер максимально отличного от неё элемента:\n");
+	// printf("[%d]\n", findFirst(array1, MaxN));
 
-	printf("\nНаходим максимальный элемент массива:\n");
-	printf("%d\n", findMax(array1, MaxN));
+	// printf("\nНаходим максимальный элемент массива:\n");
+	// printf("%d\n", findMax(array1, MaxN));
+
+	// printf("\nЧитаем из файла:\n");
+	// char file_name[20];
+	// printf("Введите имя файла в формате ""data.txt"":\n");
+	// scanf("%20s", file_name);
+	// printFile(file_name);
+
+	printf("\n\nНаходим два максимально отличающихся от среднеарифметической\n");
+	printf("суммы элементы:\n");
+	findFirstPro(array1, MaxN);
 
 	return 0;
 }
