@@ -84,7 +84,7 @@ void randomArray(int array[], int M) {
     for (int i = 0; i < M; i++) {
         srand(time(NULL));
         array[i] = genRealRandom();
-        s_sleep(1);
+        s_sleep(50000);
         printf("=");
         fflush(stdout);
     }
