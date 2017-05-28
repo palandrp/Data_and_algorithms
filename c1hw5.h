@@ -41,16 +41,22 @@ void s_sleep(int _time)
         ntime -= ttime;
     }
 }
-void randomArray(int array[], int M)
+void randomArray(int array[], int M, int S)
 {
     printf("#");
     for (int i = 0; i < M; i++)
     {
         srand(time(NULL));
         array[i] = genRealRandom();
-        s_sleep(50000);
+        s_sleep(S);
         printf("=");
         fflush(stdout);
     }
     printf("\n");
+}
+void swap(int *a,int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
 }
