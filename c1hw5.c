@@ -14,13 +14,14 @@
 */
 void b_bubleSort(int a[], int N)
 {
-	int i, j;
+	int i, j, count = 0;
 	for (i = 0; i < N; i++)
-	for (j = 0; j < N-1; j++)
-	if (a[j] > a[j+1])
-	{
-		swap(&a[j], &a[j+1]);
-	}
+		for (j = 0; j < N-1; j++)
+			if (a[j] > a[j+1])
+			{
+				swap(&a[j], &a[j+1]); count++;
+			}
+	printf("Вычислительная сложность: %d\n", count);
 }
 
 /**
@@ -28,24 +29,14 @@ void b_bubleSort(int a[], int N)
 */
 void bubleSort(int array[], int M)
 {
-	int temp, i;
-	bool flag = true;
-	while (flag)
-	{
-		i = 1;
-		flag = false;
-		while (i < M)
-		{
+	int count = 0;
+	for (int j = 1; j < M; j++)
+		for (int i = 1; i < M; i++)
 			if (array[i-1] > array[i])
 			{
-				temp = array[i-1];
-				array[i-1] = array[i];
-				array[i] = temp;
-				flag = true;
+				swap(&array[i-1], &array[i]); count++;
 			}
-			i++;
-		}
-	}
+	printf("Вычислительная сложность: %d\n", count);
 }
 
 int main(int argc, char const *argv[])
