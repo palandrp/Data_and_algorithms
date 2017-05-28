@@ -21,8 +21,8 @@ int genRealRandom()
     int m = 101;
     int b = 1;
     int a = 2;
-    unsigned long ttime;
-    ttime = time(NULL);
+    clock_t ttime;
+    ttime = clock();
     int ptime = 0;
     for (int i = 0; i < 2; i++)
     {
@@ -48,7 +48,7 @@ void randomArray(int array[], int M)
     {
         srand(time(NULL));
         array[i] = genRealRandom();
-        s_sleep(1);
+        s_sleep(50000);
         printf("=");
         fflush(stdout);
     }
