@@ -33,20 +33,19 @@ void printArray(int array[], int M){
 /**
  * Собственная функция рандома.
  */
-int genRealRandom() {
+int genRealRandom()
+{
     int m = 101;
     int b = 1;
     int a = 2;
-    
-    unsigned long ttime;
-    ttime = time(NULL);
-    
+    clock_t ttime;
+    ttime = clock();
     int ptime = 0;
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++)
+    {
         ptime = ptime * 10 + ttime % 10;
         ttime /= 10;
     }
-    
     return (a * ptime + b) % m;
 }
 
@@ -54,11 +53,13 @@ int genRealRandom() {
  * Собственная функция паузы.
  * Параметр в секундах.
  */
-void s_sleep(int _time) {
-    unsigned long ntime = 0;
-    unsigned long ttime = time(NULL);
-    while (ntime < _time) {
-        ntime = time(NULL);
+void s_sleep(int _time)
+{
+    clock_t ttime, ntime;
+    ttime = clock();
+    while (ntime < _time)
+    {
+        ntime = clock();
         ntime -= ttime;
     }
 }
@@ -78,7 +79,7 @@ void toArray(int array[], int M) {
  * Пауза в секунду нужна, чтобы сгенерировать
  * разные случайные числа.
  */
-void ramdomArray(int array[], int M) {
+void randomArray(int array[], int M) {
     printf("#");
     for (int i = 0; i < M; i++) {
         srand(time(NULL));
@@ -87,7 +88,6 @@ void ramdomArray(int array[], int M) {
         printf("=");
         fflush(stdout);
     }
-    array[M+1] = 0;
     printf("\n");
 }
 
@@ -228,7 +228,7 @@ int main(int argc, char const *argv[]) {
     
     // printf("\n\nВторое задание. Генерируется массив случайных чисел:\n");
     // int array1[MaxN];
-    // ramdomArray(array1, MaxN);
+    // randomArray(array1, MaxN);
     // printf("Теперь этот массив выводится:\n");
     // printArray(array1, MaxN);
     
