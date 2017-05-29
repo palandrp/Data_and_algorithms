@@ -49,7 +49,7 @@ void randomArray(int array[], int M, int S)
         srand(time(NULL));
         array[i] = genRealRandom();
         s_sleep(S);
-        printf("=");
+        printf("= ");
         fflush(stdout);
     }
     printf("\n");
