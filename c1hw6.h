@@ -60,17 +60,23 @@ void swap(int *a,int *b)
     *a = *b;
     *b = t;
 }
+void doSolution1();
+void doSolution2();
+void doSolution3();
+void doSolution4();
+void doSolution5();
+void doSolution6();
 int doMenu() {
 
     int number_of_task;
 
     printf("\nЗадайте значение задачи:\n");
-    printf("\n\t1 - задача #1 (возведение в степень)\n");
-    printf("\t2 - задача #2 (является ли простым)\n");
-    printf("\t3 - задача #3 (из 2-чной в 10-чную)\n");
-    printf("\t4 - задача #4 (подсчет ""хороших"" чисел)\n");
-    printf("\t5 - задача #5 (простые дроби)\n");
-    printf("\t6 - задача #6 (обмен 3-х переменных)\n");
+    printf("\n\t1 - задача #1 (поиск гласных)\n");
+    printf("\t2 - задача #2 (перестановка строк)\n");
+    printf("\t3 - задача #3 (сжатие строки)\n");
+    printf("\t4 - задача #4 (циклический сдвиг строки)\n");
+    printf("\t5 - задача #5 (формирование массива)\n");
+    printf("\t6 - задача #6 (правильность расстановки скобок)\n");
     printf("\t0 - exit\n");
     printf("\nВыбор: ");
 

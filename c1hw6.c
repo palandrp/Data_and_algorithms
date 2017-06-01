@@ -36,18 +36,24 @@
 *	б) *для различных скобок (,{,[,],},).
 */
 
+void doSolution1(){
 
+}
+void doSolution2(){
 
+}
+void doSolution3(){
 
+}
+void doSolution4(){
 
+}
+void doSolution5(){
 
-
-
-
-
-
-
-
+}
+void doSolution6(){
+	
+}
 
 int main(int argc, char const *argv[])
 {
