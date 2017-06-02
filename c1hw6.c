@@ -35,25 +35,61 @@
 *	а) только для скобок ( и )
 *	б) *для различных скобок (,{,[,],},).
 */
-
-void doSolution1(){
-
+int length(char buffer[]){
+	int count = 0;
+	while (buffer[count] != '\0'){
+		count++;
+	}
+	return count;
 }
-void doSolution2(){
+int findSymbol(char buffer[], char ch){
+	int count = 0;
+    for (int i = 0; i < length(buffer); i++){
+        if (buffer[i] == ch) count++;
+    }
+    return count;
+}
+bool findO(char buffer[]){
+	char arreyO[] = {'a','e','i','o','u','y'};
+	for(int i = 0; i < length(arreyO); i++)
+		for (int j = 0; j < length(buffer); j++)
+			if (buffer[j] == arreyO[i])
+				return true;
+	return false;
+}
+void findOn(char buffer[]){
+	int count;
+	char arreyO[] = {'a','e','i','o','u','y'};
+	int arreyNum[] = {-2,-2,-2,-2,-2,-2};
+	for(int i = 0; i < length(arreyO); i++){
+		count = 0;
+		for (int j = 0; j < length(buffer); j++)
+			if (buffer[j] == arreyO[i]){
+				count++;
+			}
+		arreyNum[i] = count;
+	}
+	int max = 0;
+	int num = -1;
+	for (int i = 0; i < 6; i++)
+		if (arreyNum[i] > max){
+			max = arreyNum[i];
+			num = i;
+		}
+	if (max != 0)
+		for (int i = 0; i < 6; i++)
+			if (max == arreyNum[i] && i != num) {
+				printf("Нет конкретной максимально часто встречающейся гласной!\n");
+				return;
+			}
+	if (num == 0) printf("Max -> a\n");
+	if (num == 1) printf("Max -> e\n");
+	if (num == 2) printf("Max -> i\n");
+	if (num == 3) printf("Max -> i\n");
+	if (num == 4) printf("Max -> u\n");
+	if (num == 5) printf("Max -> y\n");
+}
 
-}
-void doSolution3(){
-
-}
-void doSolution4(){
-
-}
-void doSolution5(){
-
-}
-void doSolution6(){
-	
-}
 
 int main(int argc, char const *argv[])
 {
