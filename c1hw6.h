@@ -60,31 +60,12 @@ void swap(int *a,int *b)
     *a = *b;
     *b = t;
 }
-void doSolution1(){
-    char buffer[128];
-    char ch = 'f';
-    scanf("%127s", buffer);
-    printf("%d\n", length(buffer));
-    printf("%d\n", findSymbol(buffer,ch));
-    if(findO(buffer)) printf("true\n");
-    else printf("false\n");
-    findOn(buffer);
-}
-void doSolution2(){
-
-}
-void doSolution3(){
-
-}
-void doSolution4(){
-
-}
-void doSolution5(){
-
-}
-void doSolution6(){
-    
-}
+void doSolution1();
+void doSolution2();
+void doSolution3();
+void doSolution4();
+void doSolution5();
+void doSolution6();
 int doMenu() {
 
     int number_of_task;

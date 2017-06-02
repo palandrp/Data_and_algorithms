@@ -6,6 +6,7 @@
  */
 
 #include "c1hw6.h"
+#include <string.h>
 
 /**
 *1) С клавиатуры вводится строка символов:
@@ -25,17 +26,11 @@
 *	повторяющихся символов. Например, строка aabcccccaaa должна превратиться в 
 *	a2b1c5a3. Если “сжатая” строка оказывается длиннее исходной, функция должна 
 *	вернуть исходную строку.
-*4)	*Реализовать функцию void shift(char *str), которая будет циклически сдвигать 
-*	строку вправо.
-*5) *Даны два целочисленных массива, упорядоченных по возрастанию: А[n] и B[m]. 
-*	Сформируйте массив C[n+m], состоящий из элементов массивов А и В, упорядоченный 
-*	по возрастанию. Массивы A и B считать из файлов A.TXT и B.TXT.
-*6)	На вход программе подается математическое выражение. Проверить правильность 
-*	расстановки скобок
-*	а) только для скобок ( и )
-*	б) *для различных скобок (,{,[,],},).
 */
-int length(char buffer[]){
+
+//###### Задание№1 #######
+//######## Begin #########
+int lengthLocal(char buffer[]){
 	int count = 0;
 	while (buffer[count] != '\0'){
 		count++;
@@ -44,15 +39,15 @@ int length(char buffer[]){
 }
 int findSymbol(char buffer[], char ch){
 	int count = 0;
-    for (int i = 0; i < length(buffer); i++){
+    for (int i = 0; i < lengthLocal(buffer); i++){
         if (buffer[i] == ch) count++;
     }
     return count;
 }
 bool findO(char buffer[]){
 	char arreyO[] = {'a','e','i','o','u','y'};
-	for(int i = 0; i < length(arreyO); i++)
-		for (int j = 0; j < length(buffer); j++)
+	for(int i = 0; i < lengthLocal(arreyO); i++)
+		for (int j = 0; j < lengthLocal(buffer); j++)
 			if (buffer[j] == arreyO[i])
 				return true;
 	return false;
@@ -61,9 +56,9 @@ void findOn(char buffer[]){
 	int count;
 	char arreyO[] = {'a','e','i','o','u','y'};
 	int arreyNum[] = {-2,-2,-2,-2,-2,-2};
-	for(int i = 0; i < length(arreyO); i++){
+	for(int i = 0; i < lengthLocal(arreyO); i++){
 		count = 0;
-		for (int j = 0; j < length(buffer); j++)
+		for (int j = 0; j < lengthLocal(buffer); j++)
 			if (buffer[j] == arreyO[i]){
 				count++;
 			}
@@ -89,7 +84,75 @@ void findOn(char buffer[]){
 	if (num == 4) printf("Max -> u\n");
 	if (num == 5) printf("Max -> y\n");
 }
+//###### Задание№1 #####
+//######## END #########
+//==============================
+//###### Задание№2 #######
+//######## Begin #########
+bool compare(char** words){
+	int i=0,j=lengthLocal(words[1])-1;
+    while (i < lengthLocal(words[0])){
+        if (words[0][i] != words[1][j]) return false;
+        i++;
+        j--;
+    }
+	return true;
+}
+// int main(int argc, char const *argv[]){
+// 	if (compare(argv[])) printf("true\n");
+// 	else printf("false\n");
+// 	return 0;
+// }
+//###### Задание№2 #####
+//######## END #########
+//==============================
+//###### Задание№3 #######
+//######## Begin #########
 
+
+//###### Задание№3 #####
+//######## END #########
+//==============================
+
+//#########################
+//#### Блок исполнения ####
+//#########################
+void doSolution1(){
+	char buffer[128];
+	char ch = 'f';
+	scanf("%127s", buffer);
+	printf("%d\n", lengthLocal(buffer));
+	printf("%d\n", findSymbol(buffer,ch));
+	if(findO(buffer)) printf("true\n");
+	else printf("false\n");
+	findOn(buffer);
+}
+void doSolution2(){
+	char **words;
+	char buffer[128];
+	int length;
+	words = (char**) malloc(2*sizeof(char*));
+	for (int i = 0; i < 2; i++){
+		scanf("%127s", buffer);
+		length = lengthLocal(buffer);
+		words[i] = (char*) malloc((length + 1)*sizeof(char*));
+		strcpy(words[i], buffer);
+	}
+	if (compare(words)) printf("true\n");
+	else printf("false\n");
+}
+void doSolution3(){
+
+}
+void doSolution4(){
+
+}
+void doSolution5(){
+
+}
+void doSolution6(){
+	
+}
 
 int main(int argc, char const *argv[])
 {
