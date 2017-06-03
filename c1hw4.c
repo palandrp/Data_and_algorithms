@@ -24,9 +24,9 @@ void time_start() {
 /**
  * Задание №1.j: Печатаем массив с помощью арифметики указателей.
  */
-void printArray(int array[], int M){
+void printArrey(int arrey[], int M){
     for (int i = 0; i < M; ++i){
-        printf("%d ", *(array+i));
+        printf("%d ", *(arrey+i));
     }
 }
 
@@ -67,9 +67,9 @@ void s_sleep(int _time)
 /**
  * a. Ввод массива с клавиатуры.
  */
-void toArray(int array[], int M) {
+void toArrey(int arrey[], int M) {
     for (int i = 0; i < M; i++) {
-        scanf("%d", &array[i]);
+        scanf("%d", &arrey[i]);
     }
 }
 
@@ -79,11 +79,11 @@ void toArray(int array[], int M) {
  * Пауза в секунду нужна, чтобы сгенерировать
  * разные случайные числа.
  */
-void randomArray(int array[], int M) {
+void randomArrey(int arrey[], int M) {
     printf("#");
     for (int i = 0; i < M; i++) {
         srand(time(NULL));
-        array[i] = genRealRandom();
+        arrey[i] = genRealRandom();
         s_sleep(50000);
         printf("=");
         fflush(stdout);
@@ -95,10 +95,10 @@ void randomArray(int array[], int M) {
  * c. Подсчитываем сумму элементов массива.
  * Предполагается, что в массиве цифры (int)
  */
-int findSumm(int array[], int M){
+int findSumm(int arrey[], int M){
     int sum = 0;
     for (int i = 0; i < M; i++){
-        sum += array[i];
+        sum += arrey[i];
     }
     return sum;
 }
@@ -107,10 +107,10 @@ int findSumm(int array[], int M){
  * d. Подсчитываем среднеарифметическую сумму элементов
  * массива.
  */
-int averageSumm(int array[], int M){
+int averageSumm(int arrey[], int M){
     int sum = 0, i = 0, count = 0;
     for (; i < M; i++){
-        sum += array[i];
+        sum += arrey[i];
         count++;
     }
     return sum/count;
@@ -120,12 +120,12 @@ int averageSumm(int array[], int M){
  * e. Находим номер самого отличающегося от средней суммы
  * элемента.
  */
-int findFirst(int array[], int M){
+int findFirst(int arrey[], int M){
     int diff, max = 0;
-    int av_sum = averageSumm(array, M);
+    int av_sum = averageSumm(arrey, M);
     for (int i = 0; i < M; i++){
-        if (max < av_sum - array[i]){
-            max = av_sum - array[i];
+        if (max < av_sum - arrey[i]){
+            max = av_sum - arrey[i];
             diff = i;
         }
     }
@@ -135,10 +135,10 @@ int findFirst(int array[], int M){
 /**
  * f. Находим максимальный элемент в массиве.
  */
-int findMax(int array[], int M){
-    int max = array[0];
+int findMax(int arrey[], int M){
+    int max = arrey[0];
     for (int i = 0; i < M; i++){
-        if (max < array[i]) max = array[i];
+        if (max < arrey[i]) max = arrey[i];
     }
     return max;
 }
@@ -153,11 +153,11 @@ int printFile(char file_name[]){
     if (file != NULL){
         int M;
         fscanf(file, "%d", &M);
-        int array[M];
+        int arrey[M];
         for (int i = 0; i < M; ++i){
-            fscanf(file, "%d", &array[i]);
+            fscanf(file, "%d", &arrey[i]);
         }
-        printArray(array, M);
+        printArrey(arrey, M);
         printf("\n");
         return 0;
     } else {
@@ -172,19 +172,19 @@ int printFile(char file_name[]){
  * Модифицируем уже написанную функцию, так чтобы она находила первый элемент, а затем
  * искала второй элемент игнорируя попадания на найденный первые элемент.
  */
-void findFirstPro(int array[], int M){
+void findFirstPro(int arrey[], int M){
     int diff1, diff2, max = 0;
-    int av_sum = averageSumm(array, M);
+    int av_sum = averageSumm(arrey, M);
     for (int i = 0; i < M; i++){
-        if (max < av_sum - array[i]){
-            max = av_sum - array[i];
+        if (max < av_sum - arrey[i]){
+            max = av_sum - arrey[i];
             diff1 = i;
         }
     }
     max = 0;
     for (int i = 0; i < M; i++){
-        if (max < (av_sum - array[i]) && i != diff1){
-            max = av_sum - array[i];
+        if (max < (av_sum - arrey[i]) && i != diff1){
+            max = av_sum - arrey[i];
             diff2 = i;
         }
     }
@@ -195,24 +195,24 @@ void findFirstPro(int array[], int M){
  * Задание №3, Решето Эратосфена.
  */
 void rErato(int N){
-	int array[N];
+	int arrey[N];
 	int p = 2, j;
 	for (int i = 2; i < N; ++i)
 	{
-		array[i] = i;
+		arrey[i] = i;
 	}
 	while (p < N){
 		j = 2;
 		while (j < N){
-			if ((j*p) < N) array[j*p] = 0;
+			if ((j*p) < N) arrey[j*p] = 0;
 			j++;
 		}
 		p++;
 	}
 	for (int i = 0; i < N; ++i)
 	{
-		if (array[i] != 0) 
-		printf("%d ", array[i]);
+		if (arrey[i] != 0) 
+		printf("%d ", arrey[i]);
 	}
 }
 
@@ -221,29 +221,29 @@ int main(int argc, char const *argv[]) {
     
     // printf("\nВведите цифры массива int, нажимая Enter.\n");
     // printf("Всего 10 цифр:\n");
-    // int array0[MaxN];
-    // toArray(array0, MaxN);
+    // int arrey0[MaxN];
+    // toArrey(arrey0, MaxN);
     // printf("Выводим полученный массив:\n");
-    // printArray(array0, MaxN);
+    // printArrey(arrey0, MaxN);
     
     // printf("\n\nВторое задание. Генерируется массив случайных чисел:\n");
-    // int array1[MaxN];
-    // randomArray(array1, MaxN);
+    // int arrey1[MaxN];
+    // randomArrey(arrey1, MaxN);
     // printf("Теперь этот массив выводится:\n");
-    // printArray(array1, MaxN);
+    // printArrey(arrey1, MaxN);
     
     // printf("\n\nПодсчитываем сумму элементов массива:\n");
-    // printf("%d\n", findSumm(array1, MaxN));
+    // printf("%d\n", findSumm(arrey1, MaxN));
     
     // printf("\nНаходим среднеарифметическую сумму элементов\n");
     // printf("массива из второго задания:\n");
-    // printf("%d\n", averageSumm(array1, MaxN));
+    // printf("%d\n", averageSumm(arrey1, MaxN));
     
     // printf("\nНаходим номер максимально отличного от неё элемента:\n");
-    // printf("[%d]\n", findFirst(array1, MaxN));
+    // printf("[%d]\n", findFirst(arrey1, MaxN));
     
     // printf("\nНаходим максимальный элемент массива:\n");
-    // printf("%d\n", findMax(array1, MaxN));
+    // printf("%d\n", findMax(arrey1, MaxN));
     
     // printf("\nЧитаем из файла:\n");
     // char file_name[20];
@@ -253,7 +253,7 @@ int main(int argc, char const *argv[]) {
     
     // printf("\n\nНаходим два максимально отличающихся от среднеарифметической\n");
     // printf("суммы элементы:\n");
-    // findFirstPro(array1, MaxN);
+    // findFirstPro(arrey1, MaxN);
 
 	printf("Печать простых по алгоритму Эратосфена\n");
 	time_start();
