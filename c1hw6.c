@@ -108,8 +108,23 @@ bool compare(char** words){
 //==============================
 //###### Задание№3 #######
 //######## Begin #########
-
-
+void compression(char arrey[]){
+    int i,count;
+    char cha;
+    bool flag;
+    for (i = 0; i < lengthLocal(arrey); i++){
+        count = 1;
+        flag = false;
+        while (*(arrey+i) == *(arrey+i+1)){
+            count++;
+            i++;
+            flag = true;
+        }
+        cha = arrey[i];
+        if (flag) printf("%d", count);
+        printf("%s", &cha);
+    }
+}
 //###### Задание№3 #####
 //######## END #########
 //==============================
@@ -142,16 +157,18 @@ void doSolution2(){
 	else printf("false\n");
 }
 void doSolution3(){
-
+	char buffer[128];
+	scanf("%127s", buffer);
+	compression(buffer);
 }
 void doSolution4(){
-
+	printf("Nothing to do.\n");
 }
 void doSolution5(){
-
+	printf("Nothing to do.\n");
 }
 void doSolution6(){
-	
+	printf("Nothing to do.\n");
 }
 
 int main(int argc, char const *argv[])
