@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define N 3
-#define M 3
+#define N 4
+#define M 4
 
 void Print2(int n, int m, int a [N][M]){
 	int i,j; 
