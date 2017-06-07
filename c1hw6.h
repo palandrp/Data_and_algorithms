@@ -9,6 +9,22 @@
 #include <time.h>
 #include <stdlib.h>
 
+long toPow(int a, int b) {
+
+    long n = 1;
+
+    while (b != 0) {
+        if (b % 2 == 0){
+            a = a * a; 
+            b /= 2;
+        } else {
+            b--;
+            n = n * a;
+        }
+    }
+
+    return n;
+}
 void printArray(int array[], int M)
 {
     for (int i = 0; i < M; ++i)
