@@ -10,28 +10,17 @@
 #include <string.h>
 
 
-void toBinary(int X,int res,int binRes,int count){
+int toBinary(int X,int count,int binRes){
     /** ----- №1 -----
      * Реализовать функцию перевода из 10 системы в
      * двоичную используя рекурсию.
      * @param X - это десятичное число, которое переводим в двоичное
-     * @param res всегда передается как 0
      * @param binRes всегда передается как 0
-     * @param count всегда передается как 1
+     * @param count всегда передается как 0
      */
-    if (X == 0) printf("0");
-    if (count%2 != 0){
-        res += toPow(2,count);
-        binRes += 1;
-        count++;
-    }
-//    if (count%2 == 0){
-//        binRes *= 10;
-//    }
-    if (X == res) printf("%d\n",binRes);
-    else {
-        toBinary(X,res,binRes*10,count);
-    }
+	if (X == count) return (binRes);
+    if (count%2 == 0) return toBinary(X,count+1,binRes*10);
+    else return toBinary(X,count+1,binRes+1);
 }
 
 //----- №2а -----
@@ -58,7 +47,10 @@ int rec(int N){
  * Блок исполнения:
  */
 void doSolution1(){
-    toBinary(16,0,0,1);
+	int X;
+	printf("Введити число:");
+	scanf("%d",&X);
+    printf("%d",toBinary(X,0,0));
 }
 void doSolution2(){
     
