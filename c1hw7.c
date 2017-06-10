@@ -12,31 +12,22 @@
 /** ----- №1 -----
 * Реализовать функцию перевода из 10 системы в 
 * двоичную используя рекурсию. 
+* @param int X: это десятичное число, которое переводим
+* @param int res, int binRes, int count: всегда должны передаваться  
+* 		 как ноль.
 */
 void toBinary(int X,int res,int binRes,int count){
-	if (count%2 == 0){ 
+	if (count%2 != 0){ 
 		res += toPow(2,count);
 		binRes += 1;
+		count++;
 	}
-	if (count%2 != 0){
-
+	if (count%2 == 0){
+		binRes *= 10;
 	}
 	if (X == res) printf("%d\n",binRes); 
 		else {
-			toBinary(X,res,binRes*10,count+1);
-		}	
-}
-void toBinary(int X,int res,int binRes,int count){
-	if (count%2 == 0){ 
-		res += toPow(2,count);
-		binRes += 1;
-	}
-	if (count%2 != 0){
-
-	}
-	if (X == res) printf("%d\n",binRes); 
-		else {
-			toBinary(X,res,binRes*10,count+1);
+			toBinary(X,res,binRes*10,count);
 		}	
 }
 
