@@ -9,74 +9,77 @@
 #include <stdio.h>
 #include <string.h>
 
-/** ----- №1 -----
-* Реализовать функцию перевода из 10 системы в 
-* двоичную используя рекурсию. 
-* @param int X: это десятичное число, которое переводим
-* @param int res, int binRes, int count: всегда должны передаваться  
-* 		 как ноль.
-*/
+
 void toBinary(int X,int res,int binRes,int count){
-	if (count%2 != 0){ 
-		res += toPow(2,count);
-		binRes += 1;
-		count++;
-	}
-	if (count%2 == 0){
-		binRes *= 10;
-	}
-	if (X == res) printf("%d\n",binRes); 
-		else {
-			toBinary(X,res,binRes*10,count);
-		}	
+    /** ----- №1 -----
+     * Реализовать функцию перевода из 10 системы в
+     * двоичную используя рекурсию.
+     * @param X - это десятичное число, которое переводим в двоичное
+     * @param res всегда передается как 0
+     * @param binRes всегда передается как 0
+     * @param count всегда передается как 1
+     */
+    if (X == 0) printf("0");
+    if (count%2 != 0){
+        res += toPow(2,count);
+        binRes += 1;
+        count++;
+    }
+//    if (count%2 == 0){
+//        binRes *= 10;
+//    }
+    if (X == res) printf("%d\n",binRes);
+    else {
+        toBinary(X,res,binRes*10,count);
+    }
 }
 
 //----- №2а -----
 //----- №2б -----
 
 /** ------ №3 ------
-* У исполнителя Калькулятор две команды, которым присвоены номера: 
-* 1. прибавь 1
-* 2. умножь на 2
-* Сколько есть программ, которые число 3 преобразуют в число 20?
-* а) с использованием массива;
-* б) с использованием рекурсии.
-*/
+ * У исполнителя Калькулятор две команды, которым присвоены номера:
+ * 1. прибавь 1
+ * 2. умножь на 2
+ * Сколько есть программ, которые число 3 преобразуют в число 20?
+ * а) с использованием массива;
+ * б) с использованием рекурсии.
+ */
 /** 3а */
 /** 3b */
 int rec(int N){
-	if (N == 3) return 1;
-	if (N == 4) return rec(N-1);
-	if (N%2 != 0) return rec(N-1);
-	else return rec(N-1)+rec(N/2);
+    if (N == 3) return 1;
+    if (N == 4) return rec(N-1);
+    if (N%2 != 0) return rec(N-1);
+    else return rec(N-1)+rec(N/2);
 }
 
 /**
-* Блок исполнения:
-*/
+ * Блок исполнения:
+ */
 void doSolution1(){
-	toBinary(16,0,0,0);
+    toBinary(16,0,0,1);
 }
 void doSolution2(){
-	
+    
 }
 void doSolution3(){
-	printf("%d\n", rec(20));
+    printf("%d\n", rec(20));
 }
 void doSolution4(){
-	printf("Nothing to do.\n");
+    printf("Nothing to do.\n");
 }
 void doSolution5(){
-	printf("Nothing to do.\n");
+    printf("Nothing to do.\n");
 }
 void doSolution6(){
-	printf("Nothing to do.\n");
+    printf("Nothing to do.\n");
 }
 
 int main(int argc, char const *argv[])
 {
-	int isOk = doMenu();
-
-	printf("\nExit status: %d\n", isOk);
-	return isOk;
+    int isOk = doMenu();
+    
+    printf("\nExit status: %d\n", isOk);
+    return isOk;
 }
