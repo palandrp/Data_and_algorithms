@@ -26,6 +26,19 @@ void toBinary(int X,int res,int binRes,int count){
 			toBinary(X,res,binRes*10,count+1);
 		}	
 }
+void toBinary(int X,int res,int binRes,int count){
+	if (count%2 == 0){ 
+		res += toPow(2,count);
+		binRes += 1;
+	}
+	if (count%2 != 0){
+
+	}
+	if (X == res) printf("%d\n",binRes); 
+		else {
+			toBinary(X,res,binRes*10,count+1);
+		}	
+}
 
 //----- №2а -----
 //----- №2б -----
