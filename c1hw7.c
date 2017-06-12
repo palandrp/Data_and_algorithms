@@ -28,6 +28,11 @@ long toBinary(int X){
 * Уже делали. Функция в хедере: long toPow(int a, int b)
 * ----- №2б -----
 */
+long recPow(int a, int b){
+	if (b == 0) return 1;
+	if (b == 1) return a;
+	return recPow(a,b-1) * a;
+}
 
 /** ------ №3 ------
  * У исполнителя Калькулятор две команды, которым присвоены номера:
@@ -38,6 +43,19 @@ long toBinary(int X){
  * б) с использованием рекурсии.
  */
 /** 3а */
+int calc(int num, int max){
+	int count = 1;
+	while (num <= max){
+		int i = num;
+		while (i <= max){
+			i *= 2;
+			if (i <= max) count++;
+		}
+		num++;
+	}
+	return count;
+}
+
 /** 3b */
 int rec(int N){
     if (N == 3) return 1;
@@ -56,9 +74,15 @@ void doSolution1(){
     printf("%ld",toBinary(X));
 }
 void doSolution2(){
-    
+	int a,b;
+	printf("Введите число:\n");
+	scanf("%d",&a);
+	printf("Введите степень\n");
+	scanf("%d",&b);
+    printf("%ld\n", recPow(a,b));
 }
 void doSolution3(){
+	printf("%d\n", calc(3,20));
     printf("%d\n", rec(20));
 }
 void doSolution4(){
