@@ -1,9 +1,10 @@
 #include <stdio.h> 
 
 #define T char
-#define MaxN 1000 T Stack[MaxN];
+#define MaxN 1000 
 
-int N= -1;
+T Stack[MaxN];
+int N = -1;
 
 void push(T i){
 	if (N < MaxN){
@@ -16,8 +17,10 @@ void push(T i){
 T pop(){
 	if   (N != -1)
 		return Stack[N--];
-	else 
+	else { 
 		printf("Stack is empty");
+		return -1;
+	}
 }
 
 int main(int argc,char *argv[]){
@@ -28,6 +31,7 @@ int main(int argc,char *argv[]){
 	push('d');
 	push('e');
 	push('f');
-	while (N != -1) printf("%c",pop());
+	while (N != -1) 
+		printf("%c",pop());
 	return 0;
 }
