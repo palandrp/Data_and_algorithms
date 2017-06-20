@@ -16,8 +16,7 @@
 long toBinary(int X){
 	long res = 0;
 	if (X == 0) return 0;
-	res = X%2 + 10 * toBinary(X/2);
-	return res;
+	return X%2 + 10 * toBinary(X/2);
 }
 
 /** ----- №2 -----
