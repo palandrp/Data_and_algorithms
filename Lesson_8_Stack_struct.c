@@ -25,7 +25,7 @@ void push(T value){
 	tmp->value = value;
 	tmp->next = Stack.head;
 	Stack.head = tmp;
-	Stack.size ++;
+	Stack.size++;
 }
 
 // Выталкиваем из списка
