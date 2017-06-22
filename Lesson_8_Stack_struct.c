@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
+#include <malloc/malloc.h>
 #define T char
 
 // Опишем структуру узла списка 
@@ -12,8 +13,8 @@ typedef struct TNode Node;
 struct Stack {
  	Node* head;
  	int size;
+ 	int maxSize;
 }; 
-int maxSize;
 struct Stack Stack;
 
 void push(T value){
@@ -31,8 +32,7 @@ void push(T value){
 // Выталкиваем из списка
 T pop(){
  	if(Stack.size == 0){
- 		printf("Stack is empty");
- 		return;
+ 		return printf("Stack is empty");
 	}
 	// Временный указатель
  	Node* next = NULL;
